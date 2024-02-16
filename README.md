@@ -1,92 +1,55 @@
-<!DOCTYPE html>
-<html>
-<head>
-    <title>Excel Data Extractor</title>
-    <style>
-        body {
-            font-family: Arial, sans-serif;
-            line-height: 1.6;
-            margin: 0;
-            padding: 0;
-            background-color: #f4f4f4;
-            padding: 20px;
-        }
+<h1>Excel Data Extractor</h1>
 
-  .container {
-      max-width: 800px;
-      margin: auto;
-      background-color: #fff;
-      padding: 20px;
-      border-radius: 5px;
-      box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
-  }
+<p>This script uses pandas to extract data from an Excel sheet based on specified column names and create a new Excel sheet with the extracted columns and their contents. If any specified columns do not exist, it creates a report in a text file.</p>
 
-  h1 {
-      color: #333;
-  }
+<h2>Requirements</h2>
 
-  h2 {
-      color: #555;
-  }
+<ul>
+  <li>Python</li>
+  <li>pandas</li>
+  <li>requests</li>
+</ul>
 
-  p {
-      margin-bottom: 10px;
-  }
+<h2>Usage</h2>
 
-  ul {
-      margin-bottom: 10px;
-  }
+<p>1. Create an Excel sheet with your data (input_file).</p>
+<p>2. Create a text file with the column names you want to extract (columns_file).</p>
+<p>3. Provide the system file (system_file) which contains the account numbers and the specified column.</p>
+<p>4. Run the script.</p>
 
-  code {
-      background-color: #f9f9f9;
-      padding: 5px;
-      border: 1px solid #ccc;
-      border-radius: 3px;
-  }
-  </style>
-</head>
-<body>
-    <div class="container">
-        <h1>Excel Data Extractor</h1>
-        <h2>Description</h2>
-        <p>This Python script uses the pandas library to extract data from an Excel sheet based on specified columns and create a new Excel sheet with the extracted data. It also checks if the specified columns exist in the input file and provides a report for any missing columns.</p>
+<h2>Functions</h2>
 
-  <h2>Requirements</h2>
-  <ul>
-      <li>Python 3.x</li>
-      <li>pandas library</li>
-      <li>openpyxl library</li>
-      <li>requests library</li>
-  </ul>
+<h3>extract_data_and_create_excel</h3>
 
-  <h2>Installation</h2>
-  <ol>
-      <li>Clone the repository:</li>
-      <code>git clone https://github.com/your-username/excel-data-extractor.git</code>
-      <li>Install the required libraries:</li>
-      <code>pip install pandas openpyxl requests</code>
-  </ol>
+<p>Extracts data from the system file based on account numbers and the specified column name and creates a new Excel sheet with the extracted data.</p>
 
-  <h2>Usage</h2>
-  <ol>
-      <li>Prepare your input files:</li>
-      <ul>
-          <li><code>main.xlsx</code>: The main Excel file from which data will be extracted.</li>
-          <li><code>system.xlsx</code>: The system Excel file containing the account numbers and specified column.</li>
-          <li><code>columns.txt</code>: A text file containing the names of the columns to be extracted.</li>
-      </ul>
-      <li>Run the script:</li>
-      <code>python main.py</code>
-      <li>If prompted, enter 'y' to extract data with a second column or 'n' to extract data without a second column.</li>
-      <li>If 'y' is selected, enter the name of the second column when prompted.</li>
-      <li>The script will extract the data, create a new Excel file (<code>extracted_data.xlsx</code>), and provide a report for any missing columns.</li>
-  </ol>
+<h3>extract_secound_function</h3>
 
-  <h2>Notes</h2>
-  <ul>
-      <li>Ensure that the input files (<code>main.xlsx</code>, <code>system.xlsx</code>, <code>columns.txt</code>) are in the same directory as the script.</li>
-      <li>Make sure to have a stable internet connection to check for updates using the <code>check_if_thif</code> function.</li>
-  </ul>
-  </div>
-</body>
-</html>
+<p>Extracts data from the main file based on the specified column names in the columns_file.</p>
+
+<h3>main</h3>
+
+<p>Main function to extract data using the above two functions and merge the extracted data into a final Excel sheet.</p>
+
+<h3>check_if_thif</h3>
+
+<p>Checks if the process should continue based on an external condition (e.g., a remote URL).</p>
+
+<h2>Example</h2>
+
+```python
+bot = Bot()
+input_file = 'main.xlsx'
+system_file = 'system.xlsx'
+columns_file = 'columns.txt'
+output_file = 'extracted_data.xlsx'
+
+if bot.check_if_thif():
+    with_secound_column = input("with secound column? (y/n): ")
+    if with_secound_column == 'y':
+        secound_column_name = input("Enter secound column name : ")
+        bot.main(secound_column_name)
+    else:
+        bot.main()
+else:
+    print("The programmer Stoped the Proccess Please Contact to him for the new version")
