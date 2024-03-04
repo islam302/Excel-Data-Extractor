@@ -1,6 +1,3 @@
-
-
-
 from openpyxl.styles import PatternFill, Font
 from datetime import datetime, timedelta
 from openpyxl import load_workbook
